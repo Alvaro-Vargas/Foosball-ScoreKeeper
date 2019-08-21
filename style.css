@@ -1,0 +1,21 @@
+body {
+  background: black;
+}
+
+h1 {
+  color: white;
+}
+
+.colunas {
+  text-align: center;
+}
+
+.score {
+  border: 10px red;
+  margin: 25%;
+  font-size: 25vw;
+}
+
+.btn {
+  margin: 2%;
+}
