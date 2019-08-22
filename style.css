@@ -6,10 +6,15 @@ h1 {
   color: white;
 }
 
-.colunas {
+.center {
   text-align: center;
 }
-
+.team1 {
+  text-align: right;
+}
+.team2 {
+  text-align: left;
+}
 .score {
   border: 10px red;
   margin: 10%;
