@@ -51,10 +51,13 @@ reset.onclick = () => {
   scr2.innerText = 0;
   taunt.stop();
   goal.stop();
+  stopTimer();
 };
 
 // TIMER
 var timer = document.getElementById("timer");
+var btnTimer = document.getElementById("btnTimer");
+var timerRunning = 0;
 
 var myTimer;
 
@@ -79,13 +82,9 @@ function countSeconds() {
 function countMinutes() {
   min++;
 
-  if (min >= 10) {
-    min = "0" + min;
-  }
-
-  if (min === 60) {
-    min = 0;
-    sec = 0;
+  if (min === 2) {
+    resetTimer();
+    timer.innerText = "Time`s UP!";
   }
 }
 
@@ -93,11 +92,35 @@ function setTimer() {
   timer.innerText = min + ":" + sec;
 }
 
-function startTimer() {
-  myTimer = setInterval(countSeconds, 1000);
-}
-function stopTimer() {
-  clearInterval(myTimer);
+function resetTimer() {
+  min = 0;
+  sec = "0" + 0;
+  setTimer();
 }
 
-// setInterval(countSeconds, 100);
+function startTimer() {
+  myTimer = setInterval(countSeconds, 1000);
+  timerRunning = 1;
+  btnTimer.innerText = "Stop!";
+  btnTimer.classList.remove("btn-success");
+  btnTimer.classList.add("btn-danger");
+}
+
+function stopTimer() {
+  clearInterval(myTimer);
+  timerRunning = 0;
+  resetTimer();
+  btnTimer.innerText = "Start Timer!";
+  btnTimer.classList.remove("btn-danger");
+  btnTimer.classList.add("btn-success");
+}
+
+function toggleTimer() {
+  if (timerRunning === 0) {
+    startTimer();
+  } else {
+    stopTimer();
+  }
+}
+
+btnTimer.onclick = toggleTimer;
